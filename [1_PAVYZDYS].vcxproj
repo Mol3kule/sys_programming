@@ -24,6 +24,7 @@
     <ProjectGuid>{9214eef4-c3ef-4d9d-9e4f-52b79d77858d}</ProjectGuid>
     <RootNamespace>My1PAVYZDYS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Projektas_01</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
