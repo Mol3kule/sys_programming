@@ -2,7 +2,8 @@
 
 char skaiciavimo_Strategija = 'v';
 
-studentas::studentas() {
+studentas::studentas()
+{
   srand(time(0));
 
   cout << "Iveskite studento varda: ";
@@ -16,7 +17,8 @@ studentas::studentas() {
 
   paz.resize(n);
 
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
+  {
     int k = rand() % 10 + 1;
     paz[i] = k;
   }
@@ -26,23 +28,27 @@ studentas::studentas() {
   skaiciavimo_Strategija == 'm' ? rezMed() : rezVid();
 }
 
-studentas::studentas(string v, string p, vector<int> pp, int e) {
+studentas::studentas(string v, string p, vector<int> pp, int e)
+{
   vard = v;
   pav = p;
   paz = pp;
   egz = e;
   skaiciavimo_Strategija == 'm' ? rezMed() : rezVid();
 }
-studentas::studentas(const studentas &temp) {
+
+studentas::studentas(const studentas &temp)
+{
   vard = temp.vard;
   pav = temp.pav;
   paz = temp.paz;
   egz = temp.egz;
   skaiciavimo_Strategija == 'm' ? rezMed() : rezVid();
 }
-studentas &studentas::operator=(const studentas &temp) {
-  if (this == &temp)
-    return *this;
+
+studentas &studentas::operator=(const studentas &temp)
+{
+  if (this == &temp) return *this;
   vard = temp.vard;
   pav = temp.pav;
   paz = temp.paz;
@@ -50,7 +56,9 @@ studentas &studentas::operator=(const studentas &temp) {
   skaiciavimo_Strategija == 'm' ? rezMed() : rezVid();
   return *this;
 }
-studentas::~studentas() {
+
+studentas::~studentas()
+{
   vard.clear();
   pav.clear();
   paz.clear();
@@ -58,42 +66,48 @@ studentas::~studentas() {
   rez = 0;
 }
 
-void studentas::printas() {
+void studentas::printas()
+{
   printf("|%-10s|%20s|", vard.c_str(), pav.c_str());
-  for (auto &a : paz)
+  for (auto &a : paz) {
     printf("%3d|", a);
-  printf("%10d|\n", egz);
+    printf("%10d|\n", egz);
+  }
 }
 
-void studentas::printasRez() {
+void studentas::printasRez()
+{
   printf("|%-10s|%20s|", vard.c_str(), pav.c_str());
   printf("%10.2f|\n", rez);
 }
 
-void studentas::rezVid() {
+void studentas::rezVid()
+{
   float sum = std::accumulate(paz.begin(), paz.end(), 0.0);
   rez = sum / paz.size() * 0.4 + egz * 0.6;
 }
 
 void studentas::rezMed() { rez = mediana(paz) * 0.4 + egz * 0.6; }
 
-double studentas::mediana(vector<int> vec) {
+double studentas::mediana(vector<int> vec)
+{
   typedef vector<double>::size_type vecSize;
   vecSize size = vec.size();
-  if (size == 0)
-    throw std::domain_error("negalima skaiciuoti medianos tusciam vektoriui");
+  if (size == 0) throw std::domain_error("negalima skaiciuoti medianos tusciam vektoriui");
   sort(vec.begin(), vec.end());
   vecSize vid = size / 2;
   return size % 2 == 0 ? (vec[vid] + vec[vid - 1]) / 2 : vec[vid] / 1.0;
 }
 
-void studentas::operator>>(std::istream &input) {
+void studentas::operator>>(std::istream &input)
+{
   input >> vard >> pav;
   paz.clear();
 
   int n;
   input >> n;
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
+  {
     int k;
     input >> k;
     paz.push_back(k);
@@ -103,29 +117,36 @@ void studentas::operator>>(std::istream &input) {
   skaiciavimo_Strategija == 'm' ? rezMed() : rezVid();
 }
 
-void studentas::operator<<(std::ostream &output) {
+void studentas::operator<<(std::ostream &output)
+{
   output << "Vardas: " << vard << endl;
   output << "Pavarde: " << pav << endl;
   output << "Pazymiai: ";
   for (auto &a : paz)
+  {
     output << a << " ";
-  output << endl;
-  output << "Egzamino pazymys: " << egz << endl;
-  output << "Galutinis balas: " << fixed << setprecision(2) << rez << endl;
+    output << endl;
+    output << "Egzamino pazymys: " << egz << endl;
+    output << "Galutinis balas: " << fixed << setprecision(2) << rez << endl;
+  }
 }
 
-string studentas::getPavarde() const { // grazina pavarde
+string studentas::getPavarde() const
+{
   return pav;
 }
 
-int studentas::getND(int indeksas) const { // grazina nd pagal indeksa
-  if (indeksas >= 0 && indeksas < paz.size()) {
+int studentas::getND(int indeksas) const
+{
+  if (indeksas >= 0 && indeksas < paz.size())
+  {
     return paz[indeksas];
-  } else {
+  }
+  else
+  {
     return -1;
   }
 }
 
 int studentas::getEgzaminas() const { return egz; }
-
 int studentas::getRezultatas() const { return rez; }

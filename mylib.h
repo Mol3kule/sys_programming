@@ -12,6 +12,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <stdexcept>
 
 using std::accumulate;
 using std::array;
@@ -42,38 +43,38 @@ using std::vector;
 extern char skaiciavimo_Strategija;
 extern string failoVardas;
 
-class studentas {
-  string vard, pav; // V.P
-  vector<int> paz;  // N.d rezultatai
-  int egz;          // Egzamino rezultatas
-  float rez;        // Galutinis rezultatas
+class studentas
+{
+  string vard, pav;
+  vector<int> paz;
+  int egz;
+  float rez;
+
 public:
   studentas();
   studentas(string v, string p, vector<int> pp, int e);
-  studentas(const studentas &temp); // Kopijavimo konstruktorius
-  studentas &
-  operator=(const studentas &temp); // Priskirimo/Kopijavimo operatorius
+  studentas(const studentas &temp);
+  studentas &operator=(const studentas &temp);
   ~studentas();
 
-  inline string getVardas() { return vard; }            
-  inline size_t getPazNr() { return paz.size(); }       
-  inline float getGal() { return rez; }                
-  string getPavarde() const;                            
-  int getND(int indeksas) const;                        
-  int getEgzaminas() const;                            
-  int getRezultatas() const;                            
+  inline string getVardas() { return vard; }
+  inline size_t getPazNr() { return paz.size(); }
+  inline float getGal() { return rez; }
+  string getPavarde() const;
+  int getND(int indeksas) const;
+  int getEgzaminas() const;
+  int getRezultatas() const;
   inline size_t getPazNr() const { return paz.size(); }
 
   inline void setVardas(string t) { vard = t; }
 
   void printas();
-  void
-  printasRez();
+  void printasRez();
   void rezVid();
   void rezMed();
 
-  double mediana(vector<int> vec); // Skaiciuoja mediana
+  double mediana(vector<int> vec);
 
-  void operator<<(std::ostream &output); // Perdengia cout
-  void operator>>(std::istream &input);  // Pergendia cin
+  void operator<<(std::ostream &output);
+  void operator>>(std::istream &input);
 };
